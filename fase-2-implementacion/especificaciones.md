@@ -4,10 +4,10 @@ En esta etapa se procede a la creación del esquema físico en el motor MySQL, i
 
 ## Objetivos de Implementación
 
-* [cite_start]**Integridad de Datos:** Creación de tablas respetando claves primarias compuestas y restricciones de integridad referencial[cite: 11].
-* [cite_start]**Seguridad de Acceso:** Configuración de tres perfiles de usuario diferenciados (`admin`, `empleado` y `cliente`) con permisos granulares[cite: 12, 13, 16, 21].
-* [cite_start]**Lógica de Consultas:** Desarrollo de una vista calculada (`vuelos_disponibles`) para la visualización de disponibilidad en tiempo real, integrando la lógica de sobreventa (overbooking)[cite: 22, 23, 27].
-* [cite_start]**Protección de Credenciales:** Implementación de almacenamiento de contraseñas mediante funciones de hash MD5[cite: 112].
+* [cite_start]**Integridad de Datos:** Creación de tablas respetando claves primarias compuestas y restricciones de integridad referencial. [cite: 11]
+* [cite_start]**Seguridad de Acceso:** Configuración de tres perfiles de usuario diferenciados (`admin`, `empleado` y `cliente`) con permisos granulares. [cite: 12, 13, 16, 21]
+* [cite_start]**Lógica de Consultas:** Desarrollo de una vista calculada (`vuelos_disponibles`) para la visualización de disponibilidad en tiempo real, integrando la lógica de sobreventa (overbooking). [cite: 22, 23, 27]
+* [cite_start]**Protección de Credenciales:** Implementación de almacenamiento de contraseñas mediante funciones de hash MD5. [cite: 112]
 
 ## Entregables Técnicos
 
