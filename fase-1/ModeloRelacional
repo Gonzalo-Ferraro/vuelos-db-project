@@ -1,58 +1,48 @@
-# Modelo Relacional - Sistema de Vuelos
+- ubicaciones (pais, estado, city, huso) 
+   •	Primary Key: (pais, estado, ciudad) 
+- aeropuertos (codigo, nombre, telefono, direccion, pais, estado, ciudad) 
+   •	Primary Key: codigo 
+   •	Foreign Key: (pais, estado, ciudad) → ubicaciones 
+- vuelos_programados (numero, aeropuerto_salida, aeropuerto_llegada) 
+   •	Primary Key: numero 
+   •	Foreign Key: aeropuerto_salida → aeropuertos (codigo) 
+   •	Foreign Key: aeropuerto_llegada → aeropuertos (codigo) 
+-  modelos_avion (modelo, fabricante, cabinas, cant_asientos) 
+   •	Primary Key: modelo 
+-  salidas (vuelo, dia, hora_sale, hora_llega, modelo_avion) 
+   •	Primary Key: (vuelo, dia) 
+   •	Foreign Key: vuelo → vuelos_programados (numero) 
+   •	Foreign Key: modelo_avion → modelos_avion (modelo) 
+-  instancias_vuelo (vuelo, fecha, dia, estado) 
+   •	Primary Key: (vuelo, fecha) 
+   • 	Foreign Key: (vuelo, dia) → salidas 
+- clases (nombre, porcentaje) 
+   •	Primary Key: nombre 
+- comodidades (codigo, descripcion) 
+   •	Primary Key: codigo 
+- posee (clase, comodidad) 
+   •	Primary Key: (clase, comodidad) 
+   •	Foreign Key: clase → clases (nombre) 
+   •	Foreign Key: comodidad → comodidades (codigo) 
+- brinda (vuelo, dia, clase, precio, cant_asientos) 
+   •	Primary Key: (vuelo, dia, clase) 
+   •	Foreign Key: (vuelo, dia) → salidas 
+   •	Foreign Key: clase → clases (nombre) 
+- pasajeros (doc_tipo, doc_nro, apellido, nombre, direccion, telefono, nacionalidad) 
+   •	Primary Key: (doc_tipo, doc_nro) 
+- empleados (legajo, password, doc_tipo, doc_nro, apellido, nombre, direccion, telefono) 
+   •	Primary Key: legajo 
+-  reservas (numero, fecha, vencimiento, estado, doc_tipo, doc_nro, legajo) 
+   •	Primary Key: numero 
+   •	Foreign Key: (doc_tipo, doc_nro) → pasajeros 
+   •	Foreign Key: legajo → empleados 
+- reserva_vuelo_clase (numero, vuelo, fecha_vuelo, clase) 
+   •	Primary Key: (numero, vuelo, fecha_vuelo) 
+   •	Foreign Key: numero → reservas 
+   •	Foreign Key: (vuelo, fecha_vuelo) → instancias_vuelo 
+   •	Foreign Key: clase → clases (nombre) 
+- asientos_reservados (vuelo, fecha, clase, cantidad) 
+   •	Primary Key: (vuelo, fecha, clase) 
+   •	Foreign Key: (vuelo, fecha) → instancias_vuelo 
+   •	Foreign Key: clase → clases (nombre) 
 
-A continuación se detalla la estructura lógica de la base de datos, especificando los atributos de cada tabla, sus Claves Primarias (PK) y Claves Foráneas (FK).
-
-### Infraestructura y Vuelos
-* **ubicaciones** (**pais**, **estado**, **ciudad**, huso)
-    * **PK**: `(pais, estado, ciudad)`
-* **aeropuertos** (**codigo**, nombre, telefono, direccion, pais, estado, ciudad)
-    * **PK**: `codigo`
-    * **FK**: `(pais, estado, ciudad)` → **ubicaciones**
-* **vuelos_programados** (**numero**, aeropuerto_salida, aeropuerto_llegada)
-    * **PK**: `numero`
-    * **FK**: `aeropuerto_salida` → **aeropuertos** (`codigo`)
-    * **FK**: `aeropuerto_llegada` → **aeropuertos** (`codigo`)
-
-### Aeronaves y Cronograma
-* **modelos_avion** (**modelo**, fabricante, cabinas, cant_asientos)
-    * **PK**: `modelo`
-* **salidas** (**vuelo**, **dia**, hora_sale, hora_llega, modelo_avion)
-    * **PK**: `(vuelo, dia)`
-    * **FK**: `vuelo` → **vuelos_programados** (`numero`)
-    * **FK**: `modelo_avion` → **modelos_avion** (`modelo`)
-* **instancias_vuelo** (**vuelo**, **fecha**, dia, estado)
-    * **PK**: `(vuelo, fecha)`
-    * **FK**: `(vuelo, dia)` → **salidas**
-
-### Servicios y Comodidades
-* **clases** (**nombre**, porcentaje)
-    * **PK**: `nombre`
-* **comodidades** (**codigo**, descripcion)
-    * **PK**: `codigo`
-* **posee** (**clase**, **comodidad**)
-    * **PK**: `(clase, comodidad)`
-    * **FK**: `clase` → **clases** (`nombre`)
-    * **FK**: `comodidad` → **comodidades** (`codigo`)
-* **brinda** (**vuelo**, **dia**, **clase**, precio, cant_asientos)
-    * **PK**: `(vuelo, dia, clase)`
-    * **FK**: `(vuelo, dia)` → **salidas**
-    * **FK**: `clase` → **clases** (`nombre`)
-
-### Usuarios y Reservas
-* **pasajeros** (**doc_tipo**, **doc_nro**, apellido, nombre, direccion, telefono, nacionalidad)
-    * **PK**: `(doc_tipo, doc_nro)`
-* **empleados** (**legajo**, password, doc_tipo, doc_nro, apellido, nombre, direccion, telefono)
-    * **PK**: `legajo`
-* **reservas** (**numero**, fecha, vencimiento, estado, doc_tipo, doc_nro, legajo)
-    * **PK**: `numero`
-    * **FK**: `(doc_tipo, doc_nro)` → **pasajeros**
-    * **FK**: `legajo` → **empleados**
-* **reserva_vuelo_clase** (**numero**, **vuelo**, **fecha_vuelo**, clase)
-    * **PK**: `(numero, vuelo, fecha_vuelo)`
-    * **FK**: `numero` → **reservas**
-    * **FK**: `(vuelo, fecha_vuelo)` → **instancias_vuelo**
-    * **FK**: `clase` → **clases** (`nombre`)
-* **asientos_reservados** (**vuelo**, **fecha**, **clase**, cantidad)
-    * **PK**: `(vuelo, fecha, clase)`
-    * **FK**: `(vuelo, fecha)` → **instancias_vuelo**
-    * **FK**: `clase` → **clases** (`nombre`)
